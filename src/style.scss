@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+
+$color-bg-dark: #3c1642;
+$color-bg-light: #b2ff9e;
+$color-light: #ffd166;
+$color-dark: #086375;
+
+body{
+font-family: 'Merriweather', serif;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background-color: $color-light;
+  margin-top: 0rem;
+}
+
+// .navbar__button{
+//   border-color: $color-bg-dark;
+//   border-style: solid;
+// }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+ul a {
+  display: block;
+  color: $color-dark;
+  padding: 8px 0 8px 16px;
+  text-decoration: none;
+}
+
+ul a:hover {
+  background-color: $color-dark;
+  color: $color-bg-light;
+}
+
+// https://ibaslogic.com/how-to-add-hamburger-menu-in-react/
+
+.navbar__element {
+  padding: 5px;
+}
+
+.navbar-right{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar-left{
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  font-size: 16px;
+}
+
+.button{
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  max-width: fit-content;
+  color: $color-bg-light;
+  background-color: $color-bg-dark;
+}
+
+.button:hover {
+  background-color: $color-dark;
+}
