@@ -4,11 +4,13 @@ import Button from "../../components/Button";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/user/UserActions";
 import { useNavigate } from "react-router-dom";
-
+import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const userToken = Cookies.get("token") ? Cookies.get("token") : "";
+  const decodedToken = userToken ? jwt_decode(Cookies.get("token")) : "";
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -38,7 +40,7 @@ const Login = () => {
       .then((response) => {
         Cookies.set("token", response.jwt);
         dispatch(userLogin());
-        history("/profile");
+        history(`/users/${decodedToken.id}`);
       })
       .catch((error) => alert(error));
   }

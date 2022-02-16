@@ -5,12 +5,12 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
-import Profile from "./pages/Profile";
+import User from "./pages/User";
 import Navbar from "./components/Navbar";
 import "./style.scss";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 const App = () => {
   console.log(store.getState())
@@ -27,7 +27,9 @@ const App = () => {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/users">
+                <Route path="/users/:id" element={<User />} />
+              </Route>
             </Routes>
           </main>
         </Router>

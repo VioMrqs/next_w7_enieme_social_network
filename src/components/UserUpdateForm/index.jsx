@@ -1,8 +1,12 @@
+
+
+
+
+
 import Button from "../../components/Button";
 import { useState } from "react";
 
-const PostForm = ({ decodedToken, userToken }) => {
-
+const UserUpdateForm = ({ decodedToken, userToken }) => {
   // States for registration
   const [message, setMessage] = useState("");
 
@@ -59,4 +63,4 @@ const PostForm = ({ decodedToken, userToken }) => {
   );
 };
 
-export default PostForm;
+export default UserUpdateForm;

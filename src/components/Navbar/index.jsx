@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Cookies from "js-cookie";
+import jwt_decode from "jwt-decode";
 
 const Navbar = () => {
   const logInfo = useSelector((state) => state);
+  const userToken = Cookies.get("token") ? Cookies.get("token") : "";
+  const decodedToken = userToken ? jwt_decode(Cookies.get("token")) : "";
 
   if (logInfo.connected) {
     return (
@@ -17,9 +21,9 @@ const Navbar = () => {
         </div>
         <div className="navbar-left">
           <ul>
-            <Link to="/profile" className="navbar__button">
-              Mon Profil
-            </Link>
+              <a href={"http://localhost:3000/users/" + decodedToken.id}>
+                Profile
+              </a>
           </ul>
           <ul>
             <Link to="/logout" className="navbar__button">

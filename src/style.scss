@@ -7,11 +7,10 @@ $color-dark: #086375;
 
 body {
   font-family: "Merriweather", serif;
-
 }
 
 .main-container {
-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -105,7 +104,23 @@ ul a:hover {
   background-color: $color-dark;
 }
 
-.post__input{
+.post__input {
   height: 10vh;
   width: 30vh;
+}
+
+.post__list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.post__item {
+  border-style: solid;
+  border-color: $color-dark;
+  margin: 5px;
+  padding: 10px;
+  min-width: 100px;
 }

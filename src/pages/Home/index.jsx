@@ -1,23 +1,34 @@
 import jwt_decode from "jwt-decode";
-import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import PostForm from "../../components/PostForm";
 import PostsList from "../../components/PostsList";
+import { useState, useEffect } from "react";
 
 const Home = () => {
-  const logInfo = useSelector((state) => state);
-  const userToken = Cookies.get("token");
-  const decodedToken = jwt_decode(Cookies.get("token"));
+  const userToken = Cookies.get("token")? Cookies.get("token") : "";
+  const decodedToken = userToken ? jwt_decode(Cookies.get("token")) : "";
+  const [postsData, setPostsData] = useState([]);
 
-  // Vérifier que la personne soit bien connectée (useSelector)
-  // Récupérer son ID
-  // Redux pour ADD / UPDATE / DELETE (//todo tuto)
+  useEffect(() => {
+    fetch("http://localhost:1337/posts", {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setPostsData(response);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
 
   return (
     <div className="home">
       <h1>Bienvenue sur ENIEME, le réseau social qu'il vous fallait.</h1>
-      <PostForm userToken={userToken} decodedToken={decodedToken}/>
-      <PostsList userToken={userToken} decodedToken={decodedToken}/>
+      <PostForm userToken={userToken} decodedToken={decodedToken} />
+      <PostsList postsData={postsData} />
     </div>
   );
 };
