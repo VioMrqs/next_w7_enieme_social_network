@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import "./style.scss";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import Cookies from "js-cookie";
 
 const App = () => {
   console.log(store.getState())
