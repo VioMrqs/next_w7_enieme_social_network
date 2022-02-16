@@ -1,0 +1,4 @@
+const ADD_LIKE = "ADD_LIKE";
+const REMOVE_LIKE = "REMOVE_LIKE";
+
+export { ADD_LIKE, REMOVE_LIKE };

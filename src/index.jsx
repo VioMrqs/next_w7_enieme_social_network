@@ -6,15 +6,19 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import User from "./pages/User";
+import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import "./style.scss";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
+import jwt_decode from "jwt-decode";
 
 const App = () => {
-  console.log(store.getState())
-  store.subscribe(() => console.log(store.getState()));
+  // console.log(store.getState())
+  // store.subscribe(() => console.log(store.getState()));
+  // const userToken = Cookies.get("token") ? Cookies.get("token") : "";
+  // const decodedToken = userToken ? jwt_decode(Cookies.get("token")) : "";
 
   return (
     <div className="main-container">
@@ -30,6 +34,7 @@ const App = () => {
               <Route path="/users">
                 <Route path="/users/:id" element={<User />} />
               </Route>
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
         </Router>

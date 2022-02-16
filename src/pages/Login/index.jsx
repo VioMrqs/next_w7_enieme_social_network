@@ -4,33 +4,31 @@ import Button from "../../components/Button";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/user/UserActions";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const userToken = Cookies.get("token") ? Cookies.get("token") : "";
-  const decodedToken = userToken ? jwt_decode(Cookies.get("token")) : "";
+  const dispatch = useDispatch();
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
   };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
 
-  const dispatch = useDispatch();
   let history = useNavigate();
 
-  const handleSubmit = () => {
-    const data = {
-      identifier: email,
-      password: password,
-    };
+  const data = {
+    identifier: username,
+    password: password,
+  };
 
+  const handleSubmit = () => {
     fetch("http://localhost:1337/auth/local", {
-      method: 'post',
+      method: "post",
       headers: {
         "Content-Type": "application/json",
       },
@@ -38,46 +36,37 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        Cookies.set("token", response.jwt);
-        dispatch(userLogin());
-        history(`/users/${decodedToken.id}`);
+        if (response.statusCode === 400) {
+          alert(response.error);
+        } else {
+          Cookies.set("token", response.jwt);
+          dispatch(userLogin());
+          history(`/`);
+        }
       })
       .catch((error) => alert(error));
-  }
+  };
 
   return (
-    <div className="form">
+    <div>
       <div>
         <h1>Connexion</h1>
       </div>
-      <form>
-        <div>
-          <div className="form__label">
-            <label>Identifiant *</label>
-          </div>
-          <input
-            onChange={handleEmail}
-            className="input"
-            value={email}
-            type="email"
-          />
-        </div>
+      <form className="form">
+        <label htmlFor="username" className="form__label">
+          Identifiant *
+        </label>
+        <input id="username" type="text" onChange={handleUsername} />
 
-        <div>
-          <div className="form__label">
-            <label>Mot de passe *</label>
-          </div>
-          <input
-            className="input"
-            value={password}
-            type="password"
-            onChange={handlePassword}
-          />
-        </div>
+        <label htmlFor="password" className="form__label">
+          Mot de passe *
+        </label>
+        <input id="password" type="password" onChange={handlePassword} />
+
         <div>
           <Button
             onClick={() => handleSubmit()}
-            type={"submit"}
+            type={"button"}
             text={"Connexion"}
           />
         </div>

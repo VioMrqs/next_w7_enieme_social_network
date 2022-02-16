@@ -5,7 +5,7 @@ const token = Cookies.get("token");
 
 const initialState = {
   connected: token ? true : false,
-  // token: token? token : "",
+  token: token? token : "",
 };
 
 const userReducer = (state = initialState, action) => {
@@ -14,13 +14,13 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         connected: true,
-        // token: action.token,
+        token: token,
       };
     case USER_LOGOUT:
       return {
         ...state,
         connected: false,
-        // token: Cookies.remove("token"),
+        token: "",
       };
     default:
       return state;

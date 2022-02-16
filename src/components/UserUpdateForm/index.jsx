@@ -1,61 +1,78 @@
-
-
-
-
-
 import Button from "../../components/Button";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
-const UserUpdateForm = ({ decodedToken, userToken }) => {
-  // States for registration
-  const [message, setMessage] = useState("");
+const UserUpdateForm = ({ profileData }) => {
+  const [username, setUserName] = useState("");
+  const [description, setDescription] = useState("");
+  const [updateProfileData, setUpdatedProfileData] = useState(profileData);
+    const userToken = Cookies.get("token");
 
-  // Handling the message change
-  const handleMessage = (e) => {
-    setMessage(e.target.value);
+  // Handling the name change
+  const handleUserName = (e) => {
+    setUserName(e.target.value);
   };
 
-  const fetchRegisterForm = (data) => {
-    fetch("http://localhost:1337/posts", {
-      method: "post",
-      headers: {
-        Authorization: `Bearer ${userToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .catch((error) => console.log(error));
+  // Handling the description change
+  const handleDescription = (e) => {
+    setDescription(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    const data = {
-      text: message,
-      user: decodedToken.id,
+    const handleSubmit = (e) => {
+      const data = {
+        username: username ? username : updateProfileData.username,
+        description: description ? description : updateProfileData.description,
+      };
+      fetch(`http://localhost:1337/users/${updateProfileData.id}`, {
+        method: `PUT`,
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((response) => setUpdatedProfileData(response))
+        .catch((error) => console.log(error));
     };
-    fetchRegisterForm(data);
-  };
 
   return (
-    <div className="post-creation">
-      <h2>A toi la parole</h2>
+    <div className="profile__form">
+      <h2>Modifie ton profil</h2>
       <form>
         <div>
           <div className="form__label">
-            <label>Ton énième message</label>
+            <label>Nom</label>
           </div>
-          <input
-            onChange={handleMessage}
-            className="post__input"
-            value={message}
-            type="text"
-          />
+          <div>
+            <input
+              onChange={handleUserName}
+              className="input"
+              value={username}
+              type="text"
+            />
+          </div>
         </div>
+
+        <div>
+          <div className="form__label">
+            <label>Description</label>
+          </div>
+          <div>
+            <input
+              onChange={handleDescription}
+              className="input"
+              value={description}
+              type="text"
+            />
+          </div>
+        </div>
+
         <div>
           <Button
-            onClick={() => handleSubmit()}
+            onClick={handleSubmit}
             type={"submit"}
-            text={"Envoi dans la toile"}
+            text={"Mettre à jour"}
           />
         </div>
       </form>

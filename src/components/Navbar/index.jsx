@@ -6,8 +6,7 @@ import jwt_decode from "jwt-decode";
 
 const Navbar = () => {
   const logInfo = useSelector((state) => state);
-  const userToken = Cookies.get("token") ? Cookies.get("token") : "";
-  const decodedToken = userToken ? jwt_decode(Cookies.get("token")) : "";
+  const decodedToken = logInfo.connected ? jwt_decode(logInfo.token) : null;
 
   if (logInfo.connected) {
     return (
