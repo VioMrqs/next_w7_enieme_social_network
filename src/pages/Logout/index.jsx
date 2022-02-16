@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import Button from '../../components/Button';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { userLogout } from '../../redux/User/UserActions';
+import { userLogout } from '../../redux/user/UserActions';
 
 const Logout = () => {
 

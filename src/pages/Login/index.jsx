@@ -2,8 +2,9 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import Button from "../../components/Button";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../../redux/User/UserActions";
+import { userLogin } from "../../redux/user/UserActions";
 import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +19,6 @@ const Login = () => {
   };
 
   const dispatch = useDispatch();
-
   let history = useNavigate();
 
   const handleSubmit = () => {
@@ -40,7 +40,7 @@ const Login = () => {
         dispatch(userLogin());
         history("/profile");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => alert(error));
   }
 
   return (
@@ -50,8 +50,8 @@ const Login = () => {
       </div>
       <form>
         <div>
-          <div>
-            <label className="label">Email - Identifiant</label>
+          <div className="form__label">
+            <label>Identifiant</label>
           </div>
           <input
             onChange={handleEmail}
@@ -62,8 +62,8 @@ const Login = () => {
         </div>
 
         <div>
-          <div>
-            <label className="label">Mot de passe</label>
+          <div className="form__label">
+            <label>Mot de passe</label>
           </div>
           <input
             className="input"
@@ -73,7 +73,11 @@ const Login = () => {
           />
         </div>
         <div>
-          <Button onClick={() => handleSubmit()} type={"submit"} text={"Connexion"} />
+          <Button
+            onClick={() => handleSubmit()}
+            type={"submit"}
+            text={"Connexion"}
+          />
         </div>
       </form>
     </div>

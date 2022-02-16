@@ -6,6 +6,7 @@ import Button from "../../components/Button";
 const Profile = () => {
   const [profileData, setProfileData] = useState("");
   const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [description, setDescription] = useState("");
 
   // Handling the name change
@@ -18,32 +19,12 @@ const Profile = () => {
     setDescription(e.target.value);
   };
 
-  //handling the update
-
-  const fetchRegisterForm = (data) => {
-    fetch(`http://localhost:1337/users/${profileData.id}`, {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      // .then((response) => )
-      .catch((error) => console.log(error));
+  // Handling the description change
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
   };
 
-  // Handling the form submission + fetch data + update state
-
-  const handleSubmit = (e) => {
-      const data = {
-      username: username,
-      description: description,
-      };
-      fetchRegisterForm(data);
-    }
-
-  // Handling the fetching
+  // Handling the fetching of profile
   const logInfo = useSelector((state) => state);
 
   const userToken = Cookies.get("token");
@@ -63,19 +44,43 @@ const Profile = () => {
       .catch((error) => console.log(error));
   }
 
+  //handling the update
+
+  // Handling the form submission + fetch data + update state
+  const handleSubmit = (e) => {
+    const data = {
+      username: username ? username : profileData.username,
+      description: description ? description: profileData.description,
+      password: password,
+    };
+    fetch(`http://localhost:1337/users/${profileData.id}`, {
+      // fetch(`http://localhost:1337/api/users/${profileData.id}`, {
+      method: `PUT`,
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((response) => setProfileData(response));
+  };
+
+  // return
+
   if (logInfo.connected === true && profileData) {
     return (
       <div className="profile">
         <div className="profile-card">
           <h1>Mon Profil</h1>
           <h1>{profileData.username}</h1>
-          <h1>{profileData.email}</h1>
+          <h2>{profileData.email}</h2>
           <p>{profileData.description}</p>
         </div>
         <form>
           <div>
-            <div>
-              <label className="label">Nom</label>
+            <div className="form__label">
+              <label>Nom</label>
             </div>
             <div>
               <input
@@ -88,8 +93,8 @@ const Profile = () => {
           </div>
 
           <div>
-            <div>
-              <label className="label">Description</label>
+            <div className="form__label">
+              <label>Description</label>
             </div>
             <div>
               <input
@@ -100,6 +105,21 @@ const Profile = () => {
               />
             </div>
           </div>
+
+          <div>
+            <div className="form__label">
+              <label>Mot de Passe*</label>
+            </div>
+            <div>
+              <input
+                onChange={handlePassword}
+                className="input"
+                value={password}
+                type="text"
+              />
+            </div>
+          </div>
+
           <div>
             <Button
               onClick={handleSubmit}

@@ -1,15 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap");
 
 $color-bg-dark: #3c1642;
 $color-bg-light: #b2ff9e;
 $color-light: #ffd166;
 $color-dark: #086375;
 
-body{
-font-family: 'Merriweather', serif;
+body {
+  font-family: "Merriweather", serif;
+
 }
 
-.form{
+.main-container {
+width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.form__label {
+  margin: 5px;
+}
+
+.form {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -56,20 +75,20 @@ ul a:hover {
   padding: 5px;
 }
 
-.navbar-right{
+.navbar-right {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.navbar-left{
+.navbar-left {
   display: flex;
   flex-direction: row;
   align-items: right;
   font-size: 16px;
 }
 
-.button{
+.button {
   border: none;
   border-radius: 5px;
   padding: 5px;

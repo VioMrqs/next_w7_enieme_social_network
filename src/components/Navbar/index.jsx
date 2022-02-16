@@ -11,7 +11,7 @@ const Navbar = () => {
         <div className="navbar-right">
           <ul>
             <Link to="/" className="navbar__button">
-              ENIEME
+              ENIEME 🤐
             </Link>
           </ul>
         </div>
@@ -35,7 +35,7 @@ const Navbar = () => {
       <div className="navbar-right">
         <ul>
           <Link to="/" className="navbar__button">
-            ENIEME
+            ENIEME 🤐
           </Link>
         </ul>
       </div>

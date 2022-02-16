@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../../components/Button";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../../redux/User/UserActions";
+import { userLogin } from "../../redux/user/UserActions";
 
 // ajouter des validations ou utiliser antdesign - ajouter redirection
 
@@ -113,8 +113,8 @@ const Register = () => {
       <form>
         {/* Labels and inputs for form data */}
         <div>
-          <div>
-            <label className="label">Nom</label>
+          <div className="form__label">
+            <label>Nom</label>
           </div>
 
           <input
@@ -126,8 +126,8 @@ const Register = () => {
         </div>
 
         <div>
-          <div>
-            <label className="label">Email</label>
+          <div className="form__label">
+            <label>Email</label>
           </div>
 
           <input
@@ -139,8 +139,8 @@ const Register = () => {
         </div>
 
         <div>
-          <div>
-            <label className="label">Password</label>
+          <div className="form__label">
+            <label>Password</label>
           </div>
 
           <input

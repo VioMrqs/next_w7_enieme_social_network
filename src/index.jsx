@@ -16,11 +16,11 @@ const App = () => {
   store.subscribe(() => console.log(store.getState()));
 
   return (
-    <div>
+    <div className="main-container">
       <Provider store={store}>
         <Router>
+          <Navbar />
           <main className="container">
-            <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
