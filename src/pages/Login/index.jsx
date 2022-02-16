@@ -51,7 +51,7 @@ const Login = () => {
       <form>
         <div>
           <div className="form__label">
-            <label>Identifiant</label>
+            <label>Identifiant *</label>
           </div>
           <input
             onChange={handleEmail}
@@ -63,7 +63,7 @@ const Login = () => {
 
         <div>
           <div className="form__label">
-            <label>Mot de passe</label>
+            <label>Mot de passe *</label>
           </div>
           <input
             className="input"

@@ -6,7 +6,6 @@ import Button from "../../components/Button";
 const Profile = () => {
   const [profileData, setProfileData] = useState("");
   const [username, setUserName] = useState("");
-  const [password, setPassword] = useState("");
   const [description, setDescription] = useState("");
 
   // Handling the name change
@@ -17,11 +16,6 @@ const Profile = () => {
   // Handling the description change
   const handleDescription = (e) => {
     setDescription(e.target.value);
-  };
-
-  // Handling the description change
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
   };
 
   // Handling the fetching of profile
@@ -51,10 +45,8 @@ const Profile = () => {
     const data = {
       username: username ? username : profileData.username,
       description: description ? description: profileData.description,
-      password: password,
     };
     fetch(`http://localhost:1337/users/${profileData.id}`, {
-      // fetch(`http://localhost:1337/api/users/${profileData.id}`, {
       method: `PUT`,
       headers: {
         Authorization: `Bearer ${userToken}`,
@@ -63,7 +55,8 @@ const Profile = () => {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((response) => setProfileData(response));
+      .then((response) => setProfileData(response))
+      .catch((error) => console.log(error));
   };
 
   // return
@@ -101,20 +94,6 @@ const Profile = () => {
                 onChange={handleDescription}
                 className="input"
                 value={description}
-                type="text"
-              />
-            </div>
-          </div>
-
-          <div>
-            <div className="form__label">
-              <label>Mot de Passe*</label>
-            </div>
-            <div>
-              <input
-                onChange={handlePassword}
-                className="input"
-                value={password}
                 type="text"
               />
             </div>
