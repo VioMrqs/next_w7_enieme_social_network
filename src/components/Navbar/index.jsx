@@ -8,7 +8,7 @@ const Navbar = () => {
   const logInfo = useSelector((state) => state);
   const decodedToken = logInfo.connected ? jwt_decode(logInfo.token) : null;
 
-  if (logInfo.connected) {
+  if (logInfo.connected === true) {
     return (
       <div className="navbar">
         <div className="navbar-right">

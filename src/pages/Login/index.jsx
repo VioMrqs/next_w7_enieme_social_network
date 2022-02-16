@@ -4,6 +4,7 @@ import Button from "../../components/Button";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/user/UserActions";
 import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -36,12 +37,15 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        if (response.statusCode === 400) {
+        if (response.error !== undefined) {
+          console.log(response)
           alert(response.error);
         } else {
           Cookies.set("token", response.jwt);
           dispatch(userLogin());
-          history(`/`);
+          const log = jwt_decode(response.jwt);
+          console.log(log.id);
+          history(`/users/${log}`);
         }
       })
       .catch((error) => alert(error));

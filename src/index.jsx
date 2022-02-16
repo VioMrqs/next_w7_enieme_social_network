@@ -9,16 +9,14 @@ import User from "./pages/User";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import "./style.scss";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "./redux/store";
-import Cookies from "js-cookie";
-import jwt_decode from "jwt-decode";
 
 const App = () => {
   // console.log(store.getState())
   // store.subscribe(() => console.log(store.getState()));
-  // const userToken = Cookies.get("token") ? Cookies.get("token") : "";
-  // const decodedToken = userToken ? jwt_decode(Cookies.get("token")) : "";
+  // const log = useSelector((state) => state)
+  // console.log(log)
 
   return (
     <div className="main-container">

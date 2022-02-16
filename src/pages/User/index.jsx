@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import PostsList from "../../components/PostsList";
 import { useParams } from "react-router";
 import UserUpdateForm from "../../components/UserUpdateForm";
+import jwt_decode from "jwt-decode";
 
 const User = () => {
   const { id } = useParams();
   const [profileData, setProfileData] = useState("");
   const [postsData, setPostsData] = useState([]);
 
-  // Handling the fetching of profile
+  // fetching of profile
   const logInfo = useSelector((state) => state);
   const userToken = Cookies.get("token");
 
@@ -29,7 +30,7 @@ const User = () => {
         .catch((error) => console.log(error));
     }, [id]);
 
-  // See post of the profile
+  // fetching post of the user
 
   useEffect(() => {
     fetch(`http://localhost:1337/posts?user.id=${id}`, {
@@ -47,23 +48,34 @@ const User = () => {
   }, []);
 
 // return & conditions
-
-  if (logInfo.connected === true && profileData) {
-    return (
-      <div className="profile">
-        <div className="profile-card">
-          <h1>Profile de {profileData.username}</h1>
-          <h2>{profileData.email}</h2>
-          <p>{profileData.description}</p>
-        </div>
-        <h1>Les posts de {profileData.username}</h1>
-        <PostsList postsData={postsData}/>
-        <UserUpdateForm profileData={profileData}/>
+// if (logInfo.connected === true && profileData) {
+if (logInfo.connected === true && id == jwt_decode(userToken).id) {
+  return (
+    <div className="profile">
+      <div className="profile-card">
+        <h1>Profile de {profileData.username}</h1>
+        <h2>{profileData.email}</h2>
+        <p>{profileData.description}</p>
       </div>
-    );
-  } else {
-    return <div>Bien tenté</div>;
-  }
+      <h1>Les posts de {profileData.username}</h1>
+      <PostsList postsData={postsData} />
+      <UserUpdateForm profileData={profileData} />
+    </div>
+  );
+} else if (logInfo.connected === true && profileData) {
+  return (
+    <div className="profile">
+      <div className="profile-card">
+        <h1>Profile de {profileData.username}</h1>
+        <h2>{profileData.email}</h2>
+        <p>{profileData.description}</p>
+      </div>
+      <h1>Les posts de {profileData.username}</h1>
+      <PostsList postsData={postsData} />
+    </div>
+  );
+}
+  return <h1>Bien tenté, sacripant</h1>;
 };
 
 export default User;
