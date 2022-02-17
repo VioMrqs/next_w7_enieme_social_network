@@ -12,6 +12,7 @@ const User = () => {
   const [postsData, setPostsData] = useState([]);
 
   // fetching of profile
+
   const logInfo = useSelector((state) => state);
   const userToken = Cookies.get("token");
 
@@ -31,7 +32,6 @@ const User = () => {
     }, [id]);
 
   // fetching post of the user
-
   useEffect(() => {
     fetch(`http://localhost:1337/posts?user.id=${id}`, {
       method: "get",
@@ -48,8 +48,8 @@ const User = () => {
   }, []);
 
 // return & conditions
-// if (logInfo.connected === true && profileData) {
-if (logInfo.connected === true && id == jwt_decode(userToken).id) {
+if (logInfo.connected === true) {
+if (profileData) {
   return (
     <div className="profile">
       <div className="profile-card">
@@ -59,23 +59,17 @@ if (logInfo.connected === true && id == jwt_decode(userToken).id) {
       </div>
       <h1>Les posts de {profileData.username}</h1>
       <PostsList postsData={postsData} />
-      <UserUpdateForm profileData={profileData} />
     </div>
   );
-} else if (logInfo.connected === true && profileData) {
+} else {
   return (
     <div className="profile">
-      <div className="profile-card">
-        <h1>Profile de {profileData.username}</h1>
-        <h2>{profileData.email}</h2>
-        <p>{profileData.description}</p>
-      </div>
-      <h1>Les posts de {profileData.username}</h1>
-      <PostsList postsData={postsData} />
+        <h1>Loading...</h1>
     </div>
   );
 }
-  return <h1>Bien tenté, sacripant</h1>;
 };
+  return <h1>Bien tenté, sacripant</h1>;
+}
 
 export default User;

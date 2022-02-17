@@ -2,11 +2,11 @@ import Button from "../../components/Button";
 import { useState } from "react";
 import Cookies from "js-cookie";
 
-const UserUpdateForm = ({ profileData }) => {
+const UserUpdateForm = ({ profile }) => {
   const [username, setUserName] = useState("");
   const [description, setDescription] = useState("");
-  const [updateProfileData, setUpdatedProfileData] = useState(profileData);
-    const userToken = Cookies.get("token");
+  const [profileData, setProfileData] = useState(profile);
+  const userToken = Cookies.get("token");
 
   // Handling the name change
   const handleUserName = (e) => {
@@ -18,62 +18,58 @@ const UserUpdateForm = ({ profileData }) => {
     setDescription(e.target.value);
   };
 
-    const handleSubmit = (e) => {
-      const data = {
-        username: username ? username : updateProfileData.username,
-        description: description ? description : updateProfileData.description,
-      };
-      fetch(`http://localhost:1337/users/${updateProfileData.id}`, {
-        method: `PUT`,
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+  const data = {};
+
+  if (username) {
+    data.username = username;
+  }
+
+  if (description) {
+    data.description = description;
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch(`http://localhost:1337/users/me`, {
+      method: `PUT`,
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setProfileData(response);
+        window.location.reload();
       })
-        .then((response) => response.json())
-        .then((response) => setUpdatedProfileData(response))
-        .catch((error) => console.log(error));
-    };
+      .catch((error) => alert(error));
+  };
 
   return (
-    <div className="profile__form">
+    <div className="form">
       <h2>Modifie ton profil</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
-          <div className="form__label">
-            <label>Nom</label>
-          </div>
-          <div>
-            <input
-              onChange={handleUserName}
-              className="input"
-              value={username}
-              type="text"
-            />
-          </div>
+          <label htmlFor="username" className="form__label">
+            Pseudo
+          </label>
+        </div>
+        <div>
+          <input id="username" type="text" onChange={handleUserName} />
         </div>
 
         <div>
-          <div className="form__label">
-            <label>Description</label>
-          </div>
-          <div>
-            <input
-              onChange={handleDescription}
-              className="input"
-              value={description}
-              type="text"
-            />
-          </div>
+          <label htmlFor="description" className="form__label">
+            Description
+          </label>
         </div>
 
         <div>
-          <Button
-            onClick={handleSubmit}
-            type={"submit"}
-            text={"Mettre à jour"}
-          />
+          <input id="description" type="text" onChange={handleDescription} />
+        </div>
+
+        <div>
+          <Button type={"submit"} text={"Mettre à jour"} />
         </div>
       </form>
     </div>

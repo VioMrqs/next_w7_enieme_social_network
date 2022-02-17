@@ -6,10 +6,11 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import User from "./pages/User";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import "./style.scss";
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import store from "./redux/store";
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/users">
                 <Route path="/users/:id" element={<User />} />
               </Route>
