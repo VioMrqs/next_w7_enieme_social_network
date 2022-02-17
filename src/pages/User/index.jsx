@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import PostsList from "../../components/PostsList";
 import { useParams } from "react-router";
-import UserUpdateForm from "../../components/UserUpdateForm";
-import jwt_decode from "jwt-decode";
+import {Link} from "react-router-dom"
 
 const User = () => {
   const { id } = useParams();
@@ -69,7 +68,17 @@ if (profileData) {
   );
 }
 };
-  return <h1>Bien tenté, sacripant</h1>;
+  return (
+    <div className="profile">
+      <h1>Bien tenté, sacripant</h1>
+      <Link to="/login" className="navbar__button">
+        Va te connecter
+      </Link>
+      <Link to="/register" className="navbar__button">
+        Va t'inscrire'
+      </Link>
+    </div>
+  );
 }
 
 export default User;

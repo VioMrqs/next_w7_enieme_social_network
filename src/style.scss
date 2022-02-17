@@ -1,18 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
 
 $color-bg-dark: #3c1642;
 $color-bg-light: #b2ff9e;
 $color-light: #ffd166;
 $color-dark: #086375;
 
-body {
-font-family: 'Staatliches', cursive;
-}
+// main
 
-a{
-  text-decoration: none;
+body {
+  font-family: "Staatliches", sans-serif;
 }
 
 .main-container {
@@ -29,6 +26,23 @@ a{
   text-align: center;
 }
 
+// Link
+
+a {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+  color: $color-bg-light;
+}
+
+a:visited {
+  color: $color-dark;
+}
+
+// form
+
 .form__label {
   margin: 5px;
 }
@@ -41,6 +55,8 @@ a{
   text-align: center;
 }
 
+// navbar
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -50,13 +66,6 @@ a{
   margin-top: 0rem;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-}
-
 .navbar a {
   display: block;
   color: $color-dark;
@@ -64,27 +73,27 @@ ul {
   text-decoration: none;
 }
 
-ul a:hover {
+.navbar a:hover {
   background-color: $color-dark;
   color: $color-bg-light;
 }
 
-.navbar__element {
-  padding: 5px;
-}
-
-.navbar-right {
+.navbar__right {
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 16px;
 }
 
-.navbar-left {
+.navbar__left {
   display: flex;
   flex-direction: row;
   align-items: right;
   font-size: 16px;
+  margin-right: 2rem;
 }
+
+// Button
 
 .button {
   border: none;
@@ -103,6 +112,8 @@ ul a:hover {
   background-color: $color-dark;
   color: $color-light;
 }
+
+// post
 
 .post__input {
   height: 10vh;
@@ -128,11 +139,11 @@ ul a:hover {
   align-items: center;
 }
 
-.post__text{
+.post__text {
   font-size: 32px;
 }
 
-.post__user{
+.post__user {
   margin: 10px;
   border: none;
   border-radius: 5px;
@@ -141,29 +152,26 @@ ul a:hover {
   text-align: center;
   text-decoration: none;
   font-size: 18px;
-  max-width: fit-content;  background-color: $color-light;
+  max-width: fit-content;
+  background-color: $color-light;
   color: $color-bg-dark;
 }
 
-.post__button{
+.post__button {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
-// $color-bg-dark: #3c1642;
-// $color-bg-light: #b2ff9e;
-// $color-light: #ffd166;
-// $color-dark: #086375;
+// profile
+
+.profile{
+  display: flex;
+  flex-direction: column;
+}
 
 // Divider
 
-.divider_solid{
-    border-top: 3px solid $color-bg-light;
-}
-
-// Form
-
-.post__input{
-
+.divider_solid {
+  border-top: 3px solid $color-bg-light;
 }

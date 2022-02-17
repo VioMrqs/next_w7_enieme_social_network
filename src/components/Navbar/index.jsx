@@ -10,27 +10,27 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="navbar-right">
+      <div className="navbar__right">
         <ul>
-          <Link to="/" className="navbar__button">
+          <Link to="/">
             ENIEME 🤐
           </Link>
         </ul>
       </div>
-      <div className="navbar-left">
+      <div className="navbar__left">
         {logInfo && <Link to="/profile">Profile</Link>}
           {logInfo && (
-            <Link to="/logout" className="navbar__button">
+            <Link to="/logout">
               Déconnexion
             </Link>
           )}
           {!logInfo && (
-              <Link to="/register" className="navbar__button">
+              <Link to="/register">
                 Inscription
               </Link>
           )}
           {!logInfo && (
-            <Link to="/login" className="navbar__button">
+            <Link to="/login">
               Connexion
             </Link>
           )}
