@@ -1,4 +1,4 @@
-import { FaFeatherAlt } from "react-icons/fa";
+import { FaFeatherAlt, FaHeart } from "react-icons/fa";
 import Button from "../Button";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
@@ -107,7 +107,7 @@ fetch(`http://localhost:1337/users/me`, {
                 )}
                 <Button
                   onClick={() => handleLikeClick(post)}
-                  text={post.like + " fans"}
+                  text={post.like + "🤟"}
                 />
               </div>
             </div>
