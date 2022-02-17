@@ -1,4 +1,14 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# ENIEME
+
+A social network using React/Redux & Strapi as a back-end.
+
+## Features
+
+- Register, login, logout
+- Post
+- See posts
+- Delete post
+- check others ppl profile
 
 ## Available Scripts
 

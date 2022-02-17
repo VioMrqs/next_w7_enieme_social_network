@@ -18,7 +18,7 @@ const handleSubmit = () => {
 }
 
   return (
-    <Button onClick={handleSubmit} text ={"Est tu sûr de vouloir te déconnecter"}/>
+    <Button onClick={handleSubmit} text ={"Veux-tu vraiment te déconnecter ?"}/>
   )
 
 };

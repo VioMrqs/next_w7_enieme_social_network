@@ -1,5 +1,6 @@
 import Button from "../../components/Button";
 import { useState } from "react";
+import {FaTelegramPlane} from "react-icons/fa"
 
 const PostForm = ({ decodedToken, userToken }) => {
 
@@ -34,7 +35,9 @@ const PostForm = ({ decodedToken, userToken }) => {
 
   return (
     <div className="post-creation">
-      <h2>A toi la parole</h2>
+      <h2>
+        A toi la parole <FaTelegramPlane />
+      </h2>
       <form>
         <div>
           <div className="form__label">

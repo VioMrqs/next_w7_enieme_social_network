@@ -26,8 +26,15 @@ const Home = () => {
 
   return (
     <div className="home">
-      <h1>Bienvenue sur ENIEME, le réseau social qu'il vous fallait.</h1>
+      <h1>Bienvenue sur ENIEME</h1>
+      <h2>Un réseau social des plus originaux</h2>
+      <img
+        src="https://c.tenor.com/KxYRITHTVjEAAAAM/typing-cat.gif"
+        alt="stupid cat"
+      ></img>
+      <hr className="divider_solid" />
       <PostForm userToken={userToken} decodedToken={decodedToken} />
+      <hr className="divider_solid" />
       <PostsList postsData={postsData} />
     </div>
   );

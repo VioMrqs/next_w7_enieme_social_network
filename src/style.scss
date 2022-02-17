@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
 
 $color-bg-dark: #3c1642;
 $color-bg-light: #b2ff9e;
@@ -6,7 +8,11 @@ $color-light: #ffd166;
 $color-dark: #086375;
 
 body {
-  font-family: "Merriweather", serif;
+font-family: 'Staatliches', cursive;
+}
+
+a{
+  text-decoration: none;
 }
 
 .main-container {
@@ -44,11 +50,6 @@ body {
   margin-top: 0rem;
 }
 
-// .navbar__button{
-//   border-color: $color-bg-dark;
-//   border-style: solid;
-// }
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -67,8 +68,6 @@ ul a:hover {
   background-color: $color-dark;
   color: $color-bg-light;
 }
-
-// https://ibaslogic.com/how-to-add-hamburger-menu-in-react/
 
 .navbar__element {
   padding: 5px;
@@ -90,11 +89,11 @@ ul a:hover {
 .button {
   border: none;
   border-radius: 5px;
-  padding: 5px;
-  margin: 5px;
+  padding: 10px;
+  margin: 10px;
   text-align: center;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 18px;
   max-width: fit-content;
   color: $color-bg-light;
   background-color: $color-bg-dark;
@@ -102,6 +101,7 @@ ul a:hover {
 
 .button:hover {
   background-color: $color-dark;
+  color: $color-light;
 }
 
 .post__input {
@@ -112,7 +112,7 @@ ul a:hover {
 .post__list {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   margin-top: 40px;
 }
@@ -123,4 +123,47 @@ ul a:hover {
   margin: 5px;
   padding: 10px;
   min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post__text{
+  font-size: 32px;
+}
+
+.post__user{
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  max-width: fit-content;  background-color: $color-light;
+  color: $color-bg-dark;
+}
+
+.post__button{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+// $color-bg-dark: #3c1642;
+// $color-bg-light: #b2ff9e;
+// $color-light: #ffd166;
+// $color-dark: #086375;
+
+// Divider
+
+.divider_solid{
+    border-top: 3px solid $color-bg-light;
+}
+
+// Form
+
+.post__input{
+
 }
