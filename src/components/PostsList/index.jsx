@@ -1,11 +1,13 @@
 import { FaFeatherAlt } from "react-icons/fa";
 import Button from "../Button";
-// import jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
-import Moment from "react-moment"
+import Moment from "react-moment";
+// import {useSelector} from "react-redux"
 
 const PostsList = ({ postsData }) => {
   const userToken = Cookies.get("token") ? Cookies.get("token") : "";
+  const decodedToken = jwt_decode(userToken);
 
   const handleDeleteClick = (data) => {
     fetch(`http://localhost:1337/posts/${data}`, {
@@ -17,7 +19,7 @@ const PostsList = ({ postsData }) => {
     })
       .then((response) => response.json())
       .catch((error) => console.log(error));
-    window.location.reload();
+      window.location.reload();
   };
 
   const handleLikeClick = (data) => {
@@ -34,8 +36,6 @@ const PostsList = ({ postsData }) => {
     //     .then((response) => response.json())
     //     .catch((error) => console.log(error));
   };
-
-  // .like
 
   return (
     <div>
@@ -55,10 +55,12 @@ const PostsList = ({ postsData }) => {
                 </a>
               </div>
               <div className="post__button">
-                <Button
-                  onClick={() => handleDeleteClick(post.id)}
-                  text={"Supprimer"}
-                />
+                {post.user.id === decodedToken.id && (
+                  <Button
+                    onClick={() => handleDeleteClick(post.id)}
+                    text={"Supprimer"}
+                  />
+                )}
                 <Button
                   onClick={() => handleLikeClick(post.id)}
                   text={post.like + " fans"}

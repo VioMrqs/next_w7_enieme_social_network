@@ -79,7 +79,7 @@ const Register = () => {
           display: submitted ? "" : "none",
         }}
       >
-        <h1>{username} est bien inscrit</h1>
+        <h1>Bienvenue {username} !</h1>
       </div>
     );
   };
@@ -100,7 +100,7 @@ const Register = () => {
 
   return (
     <div className="form">
-        <h1>Inscription</h1>
+      <h1>Inscription</h1>
       <div className="messages">
         {errorMessage()}
         {successMessage()}

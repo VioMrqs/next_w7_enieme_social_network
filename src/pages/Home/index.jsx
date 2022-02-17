@@ -3,13 +3,14 @@ import Cookies from "js-cookie";
 import PostForm from "../../components/PostForm";
 import PostsList from "../../components/PostsList";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 
 const Home = () => {
   const userToken = Cookies.get("token")? Cookies.get("token") : "";
   const decodedToken = userToken ? jwt_decode(Cookies.get("token")) : "";
-  const logInfo = useSelector((state) => state);
+  // const logInfo = useSelector((state) => state);
+  // const decodedToken = jwt_decode(logInfo.token);
   const [postsData, setPostsData] = useState([]);
+
 
   useEffect(() => {
     fetch("http://localhost:1337/posts", {
@@ -25,8 +26,10 @@ const Home = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  console.log(postsData);
 
-  if (logInfo.connected && postsData) {
+
+  if (userToken) {
     return (
       <div className="home">
         <h1>Bienvenue sur ENIEME</h1>
@@ -36,7 +39,7 @@ const Home = () => {
           alt="stupid cat"
         ></img>
         <hr className="divider_solid" />
-        <PostForm userToken={userToken} decodedToken={logInfo.token} />
+        <PostForm userToken={userToken} decodedToken={decodedToken} />
         <hr className="divider_solid" />
         <PostsList postsData={postsData} />
       </div>

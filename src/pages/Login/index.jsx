@@ -38,7 +38,6 @@ const Login = () => {
       .then((response) => response.json())
       .then((response) => {
         if (response.error !== undefined) {
-          console.log(response)
           alert(response.error);
         } else {
           Cookies.set("token", response.jwt);

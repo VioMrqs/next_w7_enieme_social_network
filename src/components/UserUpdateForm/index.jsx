@@ -27,6 +27,7 @@ const UserUpdateForm = ({ profile }) => {
   if (description) {
     data.description = description;
   }
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`http://localhost:1337/users/me`, {
