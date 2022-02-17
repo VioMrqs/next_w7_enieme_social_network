@@ -4,7 +4,6 @@ import Button from "../../components/Button";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/user/UserActions";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const dispatch = useDispatch();
