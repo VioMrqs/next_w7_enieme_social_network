@@ -87,6 +87,7 @@ a:visited {
   flex-direction: row;
   align-items: center;
   font-size: 16px;
+  margin-left: 2rem;
 }
 
 .navbar__left {
@@ -120,8 +121,13 @@ a:visited {
 // post
 
 .post__input {
-  height: 10vh;
+  height: 5vh;
   width: 30vh;
+  border-radius: 5px;
+}
+
+.post__input:focus {
+  color: $color-bg-dark;
 }
 
 .post__list {
@@ -169,12 +175,12 @@ a:visited {
 
 // profile
 
-.profile{
+.profile {
   display: flex;
   flex-direction: column;
 }
 
-.profile__card{
+.profile__card {
   margin: 5px;
   padding: 5px;
   border: solid $color-bg-light 5px;

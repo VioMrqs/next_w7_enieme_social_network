@@ -14,10 +14,6 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 const App = () => {
-  // console.log(store.getState())
-  // store.subscribe(() => console.log(store.getState()));
-  // const log = useSelector((state) => state)
-  // console.log(log)
 
   return (
     <div className="main-container">

@@ -43,7 +43,6 @@ fetch(`http://localhost:1337/users/me`, {
   if (!profileData) {fetchCurrentUser()};
 
   // DATA for post update
-
   const setDataFetch = (post, user) => {
     const data = {};
     const likes = post.like;

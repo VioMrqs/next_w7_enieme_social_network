@@ -8,11 +8,9 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar__right">
-        <ul>
           <Link to="/">
             ENIEME 🤐
           </Link>
-        </ul>
       </div>
       <div className="navbar__left">
         {logInfo && <Link to="/profile">Profile</Link>}
