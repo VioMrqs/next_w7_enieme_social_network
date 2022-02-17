@@ -3,6 +3,7 @@ import Button from "../Button";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
 import Moment from "react-moment";
+import Notification from "rc-notification";
 // import {useSelector} from "react-redux"
 
 const PostsList = ({ postsData }) => {
@@ -19,22 +20,29 @@ const PostsList = ({ postsData }) => {
     })
       .then((response) => response.json())
       .catch((error) => console.log(error));
-      window.location.reload();
+    window.location.reload();
   };
 
-  const handleLikeClick = (data) => {
-    // const data = {
-    //   like: username ? username : updateProfileData.username,
-    // };
-    //   fetch(`http://localhost:1337/posts/${data}`, {
-    //     method: "put",
-    //     headers: {
-    //       Authorization: `Bearer ${userToken}`,
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //     .then((response) => response.json())
-    //     .catch((error) => console.log(error));
+  const handleLikeClick = (post) => {
+    if (post.user.id === decodedToken.id) {
+      alert("Tricheur !");
+    } else {
+      const likes = post.like;
+      const data = { like: likes + 1 };
+      fetch(`http://localhost:1337/posts/${post.id}`, {
+        method: "put",
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => {
+          response.json();
+          window.location.reload();
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
@@ -62,7 +70,7 @@ const PostsList = ({ postsData }) => {
                   />
                 )}
                 <Button
-                  onClick={() => handleLikeClick(post.id)}
+                  onClick={() => handleLikeClick(post)}
                   text={post.like + " fans"}
                 />
               </div>
