@@ -45,28 +45,26 @@ fetch(`http://localhost:1337/users/me`, {
   // DATA for post update
 
   const setDataFetch = (post, user) => {
-    const arrayOfFans = post.users_likes;
     const data = {};
     const likes = post.like;
+    const arrayOfFans = post.users_likes;
     const arrayOfThisFan = arrayOfFans.filter(data => data.id === user.id);
     if(arrayOfThisFan.length > 0){
       data.like = likes - 1;
       data.users_likes = arrayOfFans.filter((data) => data.id !== user.id);
     }else {
       data.like = likes + 1;
-      data.users_likes = arrayOfFans.push(user);
+      data.users_likes = arrayOfFans.concat(user);
     }
       return data;
     }
 
 // UPDATE POST
-
   const handleLikeClick = (post) => {
     if (post.user.id === decodedToken.id) {
-      alert("Tricheur !");
+      alert("Ton propre message, tu n'aimeras point !");
     } else {
       const data = setDataFetch(post, profileData);
-      console.log(data)
       fetch(`http://localhost:1337/posts/${post.id}`, {
         method: "put",
         headers: {
