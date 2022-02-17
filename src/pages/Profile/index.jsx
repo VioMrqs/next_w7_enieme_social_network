@@ -23,8 +23,6 @@ const Profile = () => {
       .catch((error) => console.log(error));
   }
 
-  console.log(profileData);
-
   // return & conditions
 
   if (logInfo.connected && profileData) {
