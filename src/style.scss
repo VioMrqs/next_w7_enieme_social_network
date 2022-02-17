@@ -53,6 +53,10 @@ a:visited {
   align-content: center;
   justify-content: center;
   text-align: center;
+  margin: 5px;
+  padding: 5px;
+  border: solid $color-bg-dark 5px;
+  border-radius: 10px;
 }
 
 // navbar
@@ -168,6 +172,13 @@ a:visited {
 .profile{
   display: flex;
   flex-direction: column;
+}
+
+.profile__card{
+  margin: 5px;
+  padding: 5px;
+  border: solid $color-bg-light 5px;
+  border-radius: 10px;
 }
 
 // Divider

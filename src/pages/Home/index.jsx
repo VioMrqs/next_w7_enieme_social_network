@@ -3,10 +3,12 @@ import Cookies from "js-cookie";
 import PostForm from "../../components/PostForm";
 import PostsList from "../../components/PostsList";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const userToken = Cookies.get("token")? Cookies.get("token") : "";
   const decodedToken = userToken ? jwt_decode(Cookies.get("token")) : "";
+  const logInfo = useSelector((state) => state);
   const [postsData, setPostsData] = useState([]);
 
   useEffect(() => {
@@ -24,7 +26,23 @@ const Home = () => {
   }, []);
 
 
-  return (
+  if (logInfo.connected && postsData) {
+    return (
+      <div className="home">
+        <h1>Bienvenue sur ENIEME</h1>
+        <h2>Un réseau social des plus originaux</h2>
+        <img
+          src="https://c.tenor.com/KxYRITHTVjEAAAAM/typing-cat.gif"
+          alt="stupid cat"
+        ></img>
+        <hr className="divider_solid" />
+        <PostForm userToken={userToken} decodedToken={logInfo.token} />
+        <hr className="divider_solid" />
+        <PostsList postsData={postsData} />
+      </div>
+    );
+  }
+return (
     <div className="home">
       <h1>Bienvenue sur ENIEME</h1>
       <h2>Un réseau social des plus originaux</h2>
@@ -32,12 +50,8 @@ const Home = () => {
         src="https://c.tenor.com/KxYRITHTVjEAAAAM/typing-cat.gif"
         alt="stupid cat"
       ></img>
-      <hr className="divider_solid" />
-      <PostForm userToken={userToken} decodedToken={decodedToken} />
-      <hr className="divider_solid" />
-      <PostsList postsData={postsData} />
     </div>
-  );
-};
+  );  
+}
 
 export default Home;

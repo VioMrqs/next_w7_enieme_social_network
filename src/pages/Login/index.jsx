@@ -50,11 +50,8 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h1>Connexion</h1>
-      </div>
       <form className="form">
+          <h1>Connexion</h1>
         <label htmlFor="username" className="form__label">
           Identifiant *
         </label>
@@ -73,7 +70,6 @@ const Login = () => {
           />
         </div>
       </form>
-    </div>
   );
 };
 

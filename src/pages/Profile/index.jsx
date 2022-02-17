@@ -30,10 +30,10 @@ const Profile = () => {
   if (logInfo.connected && profileData) {
     return (
       <div className="profile">
-        <div className="profile-card">
+        <div className="profile__card">
           <h1>Profile de {profileData.username}</h1>
-          <h2>{profileData.email}</h2>
-          <p>{profileData.description}</p>
+          <h2>{profileData.description}</h2>
+          <p>{profileData.email}</p>
         </div>
         <UserUpdateForm profile={profileData} />
       </div>

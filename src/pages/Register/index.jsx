@@ -100,18 +100,13 @@ const Register = () => {
 
   return (
     <div className="form">
-      <div>
         <h1>Inscription</h1>
-      </div>
-
-      {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
         {successMessage()}
       </div>
 
       <form>
-        {/* Labels and inputs for form data */}
         <div>
           <div className="form__label">
             <label>Nom</label>
