@@ -43,9 +43,7 @@ const Login = () => {
         } else {
           Cookies.set("token", response.jwt);
           dispatch(userLogin());
-          const log = jwt_decode(response.jwt);
-          console.log(log.id);
-          history(`/users/${log}`);
+          history(`/profile`);
         }
       })
       .catch((error) => alert(error));

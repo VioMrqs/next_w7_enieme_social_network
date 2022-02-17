@@ -47,7 +47,7 @@ const UserUpdateForm = ({ profile }) => {
 
   return (
     <div className="form">
-      <h2>Modifie ton profil</h2>
+      <h1>Modifie ton profil</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username" className="form__label">
