@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 const Home = () => {
   const userToken = Cookies.get("token")? Cookies.get("token") : "";
   const decodedToken = userToken ? jwt_decode(Cookies.get("token")) : "";
-  
+
   const [postsData, setPostsData] = useState([]);
 
   useEffect(() => {

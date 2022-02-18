@@ -5,7 +5,7 @@ const token = Cookies.get("token");
 
 const initialState = {
   connected: token ? true : false,
-  token: token? token : "",
+  token: token ? token : "",
 };
 
 const userReducer = (state = initialState, action) => {
